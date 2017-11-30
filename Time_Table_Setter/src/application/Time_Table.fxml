@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1150.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="83.0" layoutY="58.0" mnemonicParsing="false" onAction="#Print" prefWidth="200.0" text="시간표 생성" />
+      <ListView fx:id="MyTTList" layoutX="83.0" layoutY="124.0" prefHeight="200.0" prefWidth="200.0" />
+      <Accordion layoutX="69.0" layoutY="546.0" prefHeight="58.0" prefWidth="142.0" />
+      <VBox layoutX="91.0" layoutY="404.0" prefHeight="169.0" prefWidth="142.0">
+         <children>
+            <CheckBox mnemonicParsing="false" text="학점 이상">
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+               <graphic>
+                  <TextField prefHeight="29.0" prefWidth="32.0" text="0" />
+               </graphic>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="학점 이하">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <graphic>
+                  <TextField prefHeight="29.0" prefWidth="32.0" text="0" />
+               </graphic>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="주 ">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="CheckBox">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="CheckBox">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="CheckBox">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="CheckBox">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </CheckBox>
+         </children>
+      </VBox>
+      <ChoiceBox disable="true" layoutX="87.0" layoutY="590.0" prefWidth="150.0" />
+      <Button fx:id="Select" disable="true" layoutX="149.0" layoutY="335.0" mnemonicParsing="false" onAction="#buttonAction" text="수업 선택" />
+      <GridPane fx:id="grid" gridLinesVisible="true" layoutX="313.0" layoutY="53.0" prefHeight="797.0" prefWidth="790.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lab" alignment="TOP_LEFT" text="월요일" textAlignment="CENTER" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Label>
+            <Label fx:id="lab" text="1 교시" GridPane.rowIndex="1" />
+            <Label fx:id="lab" text="2 교시" GridPane.rowIndex="2" />
+            <Label text="3 교시" GridPane.rowIndex="3" />
+            <Label text="4 교시" GridPane.rowIndex="4" />
+            <Label text="5 교시" GridPane.rowIndex="5" />
+            <Label text="6 교시" GridPane.rowIndex="6" />
+            <Label text="7 교시" GridPane.rowIndex="7" />
+            <Label text="8 교시" GridPane.rowIndex="8" />
+            <Label text="9 교시" GridPane.rowIndex="9" />
+            <Label text="화요일" GridPane.columnIndex="2" />
+            <Label text="수요일" GridPane.columnIndex="3" />
+            <Label text="목요일" GridPane.columnIndex="4" />
+            <Label text="금요일" GridPane.columnIndex="5" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
