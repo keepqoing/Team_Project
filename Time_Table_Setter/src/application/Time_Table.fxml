@@ -50,12 +50,12 @@
                   <TextField fx:id="credituppertext" disable="true" prefHeight="29.0" prefWidth="70.0" />
                </graphic>
             </CheckBox>
-            <CheckBox fx:id="choicenumOfday" mnemonicParsing="false" prefHeight="29.0" prefWidth="158.0" onAction="#Choice_Num_Chcek" text="일 수업">
+            <CheckBox fx:id="choicenumOfday" mnemonicParsing="false" onAction="#Choice_Num_Chcek" prefHeight="29.0" prefWidth="176.0" text="일 수업">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
                <graphic>
-                  <ComboBox fx:id="choicenum" disable="true"  prefHeight="29.0" onAction = "#comboChange" prefWidth="71.0" />
+                  <ComboBox fx:id="choicenum" disable="true" onAction="#comboChange" prefHeight="29.0" prefWidth="84.0" />
                </graphic>
             </CheckBox>
             <CheckBox mnemonicParsing="false" text="CheckBox">

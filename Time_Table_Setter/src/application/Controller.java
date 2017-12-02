@@ -11,8 +11,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -32,13 +30,6 @@ public class Controller {
 	@FXML private TextField txtAddItem; 
 	@FXML private Button Select;
 	@FXML private Button conditionbutton;
-	@FXML private TableView<Class_Info> table;
-	@FXML private TableColumn<Class_Info, String> Time;
-	@FXML private TableColumn<Class_Info, String> Mon;
-	@FXML private TableColumn<Class_Info, String> Tue;
-	@FXML private TableColumn<Class_Info, String> Wed;
-	@FXML private TableColumn<Class_Info, String> Thu;
-	@FXML private TableColumn<Class_Info, String> Fri;
 	@FXML private GridPane grid;
 	@FXML private Label lab1;
 	@FXML private Label[][] labb;
@@ -86,18 +77,24 @@ public class Controller {
 		Table_Set_Class_List.clear();
 		ObservableList<String> names;
         names = MyTTList.getSelectionModel().getSelectedItems();
+		int timetablesetnum;
         String name = names.toString();
         name = name.substring(1,name.length()-1);
-        System.out.println(name);
         
-        int b = Integer.parseInt(name.substring(name.lastIndexOf("")-2, name.length()).trim());
+        try {
+        	timetablesetnum = Integer.parseInt(name.substring(name.lastIndexOf("")-2, name.length()).trim());
         //ex) 시간표  10에서 10을 추출
-
+        }catch(Exception e) {
+			System.out.println("시간표를 선택하세요");
+			return;
+		}
+        
+        System.out.println(name);
         
         ArrayList<String> temp = new ArrayList<String>();
         
-        temp = par.GET_TIME(Class_Time_List.get(b).toString());
-        String[] aaa = Class_Num_List.get(b).split(",");;
+        temp = par.GET_TIME(Class_Time_List.get(timetablesetnum).toString());
+        String[] aaa = Class_Num_List.get(timetablesetnum).split(",");;
 
         for(int i=0;i<aaa.length;i++)
         {
@@ -252,7 +249,7 @@ public class Controller {
 		if(choicenumOfday.isSelected()) {
 			try {
 				numOfday = Integer.parseInt(choicenum.getValue());
-				System.out.println(numOfday);
+				//System.out.println(numOfday);
 			}catch(Exception e) {
 				System.out.println("combobox is not selected");
 				return;
@@ -270,16 +267,38 @@ public class Controller {
 		
 		
 		System.out.println(creditlowlimit);
-		if(creditlower.isSelected() && !creditupper.isSelected())
+		if((creditlower.isSelected()) && (!creditupper.isSelected()) && (!choicenumOfday.isSelected()) ) {
 			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit,24);
-		else if (!creditlower.isSelected() && creditupper.isSelected())
+			System.out.println("1");
+		}
+
+		else if ((!creditlower.isSelected()) && (creditupper.isSelected()) && (!choicenumOfday.isSelected())) {
 			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,0,creditupplimit);
-		else if (creditlower.isSelected() && creditupper.isSelected())
+			System.out.println("2");
+		}
+		else if (creditlower.isSelected() && creditupper.isSelected() && (!choicenumOfday.isSelected())) {
 			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit,creditupplimit);
-		else if(choicenumOfday.isSelected()){
+			System.out.println("3");
+		}
+		else if((!creditlower.isSelected()) && (!creditupper.isSelected()) && choicenumOfday.isSelected()) {
 			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,numOfday,chk);
-//			System.out.println("error");
-//			return;
+			System.out.println("4");
+		}
+		else if((creditlower.isSelected()) && (!creditupper.isSelected()) && (choicenumOfday.isSelected())) {
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit,24,numOfday,chk);
+			System.out.println("5");
+		}
+		else if((!creditlower.isSelected()) && (creditupper.isSelected()) && (choicenumOfday.isSelected())) {
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,0,creditupplimit,numOfday,chk);
+			System.out.println("6");
+		}
+		else if(creditlower.isSelected() && creditupper.isSelected() && choicenumOfday.isSelected()) {
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit,creditupplimit,numOfday,chk);
+			System.out.println("7");
+		}
+		else {
+			System.out.println("error");
+			return;
 		}
 	
 			
