@@ -42,7 +42,7 @@
                   <TextField fx:id="creditlowertext" disable="true" prefHeight="29.0" prefWidth="70.0" />
                </graphic>
             </CheckBox>
-            <CheckBox fx:id="creditupper" mnemonicParsing="false" text="학점 이하">
+            <CheckBox fx:id="creditupper" mnemonicParsing="false" onAction="#Credit_Upper_Check" text="학점 이하">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -50,10 +50,13 @@
                   <TextField fx:id="credituppertext" disable="true" prefHeight="29.0" prefWidth="70.0" />
                </graphic>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="주 ">
+            <CheckBox fx:id="choicenumOfday" mnemonicParsing="false" prefHeight="29.0" prefWidth="158.0" onAction="#Choice_Num_Chcek" text="일 수업">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
+               <graphic>
+                  <ComboBox fx:id="choicenum" disable="true"  prefHeight="29.0" onAction = "#comboChange" prefWidth="71.0" />
+               </graphic>
             </CheckBox>
             <CheckBox mnemonicParsing="false" text="CheckBox">
                <VBox.margin>

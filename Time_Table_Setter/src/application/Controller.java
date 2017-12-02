@@ -1,8 +1,6 @@
 package application;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,9 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,7 +24,9 @@ public class Controller {
 	private ArrayList<String> E = new ArrayList<String>();
 	private Parser par = new Parser();
 	private DFS dfs = new DFS();
-	private int creditlowlimit = 0;
+	private int creditlowlimit = -1;
+	private int creditupplimit = -1;
+	private int numOfday = -1;
 	
 	@FXML private ListView<String> MyTTList;	
 	@FXML private TextField txtAddItem; 
@@ -40,17 +40,34 @@ public class Controller {
 	@FXML private TableColumn<Class_Info, String> Thu;
 	@FXML private TableColumn<Class_Info, String> Fri;
 	@FXML private GridPane grid;
-	@FXML private Label lab;
+	@FXML private Label lab1;
 	@FXML private Label[][] labb;
 	@FXML private CheckBox creditlower;
 	@FXML private CheckBox creditupper;
+	@FXML private CheckBox choicenumOfday;
 	@FXML private TextField creditlowertext;
 	@FXML private TextField credituppertext;
+	@FXML private ComboBox<String> choicenum;
 	@FXML private ObservableList<String> listItems;
 	ObservableList<String> list; 
-	
+	ObservableList<String> numlist = FXCollections.observableArrayList("1", "2", "3", "4", "5");
+
 	@FXML
 	public void initialize() {
+		Class_List  = new Class_Info[6];
+		Class_List[0] = new Class_Info("C0","알고리즘","류관희",3,"W5,W6,H2");
+		Class_List[1] = new Class_Info("C1","개발 프로젝트","강재구",2,"F5,F6,F7,F8");
+		Class_List[2] = new Class_Info("C2","컴퓨터 구조","전중남",3,"T1,T2,W1");
+		Class_List[3] = new Class_Info("C3","미래설계","이재성",1,"W8,W9");
+		Class_List[4] = new Class_Info("C4","CPL","문현주",3,"T5,T6,W2");
+		Class_List[5] = new Class_Info("C5","HCI","황경순",3,"M2,M3,T7,T8");
+		
+		for(int i=0;i<Class_List.length;i++) {
+			Class_List[i].time = new ArrayList<String>();
+			Class_List[i].time = par.GET_TIME(Class_List[i].dayInfo);
+		}
+		
+
 		labb = new Label[5][9];
 
 		for(int i=0;i<5;i++) 
@@ -60,6 +77,9 @@ public class Controller {
 		for(int i=1;i<6;i++)
 			for(int j=1;j<10;j++)
 				grid.add(labb[i-1][j-1], i, j);
+		
+		lab1 = new Label();
+		choicenum.setItems(numlist);
 	}
 
 	public void buttonAction(ActionEvent event) {
@@ -159,75 +179,118 @@ public class Controller {
 		E.clear();
 		Class_Num_List.clear();
 		Class_Time_List.clear();
-		Class_List  = new Class_Info[6];
-		Class_List[0] = new Class_Info("C0","알고리즘","류관희",3,"W5,W6,H2");
-		Class_List[1] = new Class_Info("C1","개발 프로젝트","강재구",2,"F5,F6,F7,F8");
-		Class_List[2] = new Class_Info("C2","컴퓨터 구조","전중남",3,"T1,T2,W1");
-		Class_List[3] = new Class_Info("C3","미래설계","이재성",1,"W8,W9");
-		Class_List[4] = new Class_Info("C4","CPL","문현주",3,"T5,T6");
-		Class_List[5] = new Class_Info("C5","HCI","황경순",3,"M2,M3,T7,T8");
-		
-		for(int i=0;i<Class_List.length;i++) {
-			Class_List[i].time = new ArrayList<String>();
-			Class_List[i].time = par.GET_TIME(Class_List[i].dayInfo);
-		}
-		
+	
 		String CurrentSum = "";
 		String CurrentTime = "";
 		
 		dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List);
 		
-		String[] D = new String[Class_Num_List.size()];
 		for(int i=0;i<Class_Num_List.size();i++)
 			E.add("시간표 " + Integer.toString(i));
-		
 		
 		list = FXCollections.observableArrayList(E);
 		MyTTList.setItems(list);
 		Select.setDisable(false);
 	}
 	
+	
 	@FXML public void Credit_Lower_Check() {
 		if(creditlower.isSelected()) {
 			creditlowertext.setDisable(false);
 			conditionbutton.setDisable(false);
 		}
+		else
+			creditlowertext.setDisable(true);
 	}
 	
-	@FXML public void Credit_Lower_Set() {
-		creditlowlimit = Integer.parseInt(creditlowertext.getText());
-		String CurrentSum = "";
-		String CurrentTime = "";
-		dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit);
-		
-		String[] D = new String[Class_Num_List.size()];
-		for(int i=0;i<Class_Num_List.size();i++)
-			D[i] = "시간표 " + Integer.toString(i);
-		
-		list = FXCollections.observableArrayList(D);
-		MyTTList.setItems(list);
+	@FXML public void Credit_Upper_Check() {
+		if(creditupper.isSelected()) {
+			credituppertext.setDisable(false);
+			conditionbutton.setDisable(false);
+		}
+		else
+			credituppertext.setDisable(true);
 	}
 	
+	@FXML public void Choice_Num_Chcek() {
+		if(choicenumOfday.isSelected()) {
+			choicenum.setDisable(false);
+			conditionbutton.setDisable(false);
+		}
+		else
+			choicenum.setDisable(true);
+	}
+	
+	public void comboChange(ActionEvent event) {
+		lab1.setText(choicenum.getValue());
+    }
+
+
 	@FXML public void Condition_Print() {
-		creditlowlimit = Integer.parseInt(creditlowertext.getText());
+		creditlowlimit = -1;
+		creditupplimit = -1;
+		
+		if(creditlower.isSelected()) {
+			try {
+			creditlowlimit = Integer.parseInt(creditlowertext.getText());
+			
+			}catch(Exception e) {
+				System.out.println("creditlowertext is null");
+				return;
+			}
+		}
+
+		if(creditupper.isSelected()) {
+			try {
+				creditupplimit = Integer.parseInt(credituppertext.getText());
+			}catch(Exception e) {
+				System.out.println("credituppertext is null");
+				return;
+			}
+		}
+		
+		if(choicenumOfday.isSelected()) {
+			try {
+				numOfday = Integer.parseInt(choicenum.getValue());
+				System.out.println(numOfday);
+			}catch(Exception e) {
+				System.out.println("combobox is not selected");
+				return;
+			}
+		}
+		
 		String CurrentSum = "";
 		String CurrentTime = "";
 		E.clear();
 		Class_Num_List.clear();
 		Class_Time_List.clear();
+		boolean[] chk = new boolean[5];
+		for(int i=0;i<5;i++)
+			chk[i] = false;
+		
 		
 		System.out.println(creditlowlimit);
-		dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit);
-		
+		if(creditlower.isSelected() && !creditupper.isSelected())
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit,24);
+		else if (!creditlower.isSelected() && creditupper.isSelected())
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,0,creditupplimit);
+		else if (creditlower.isSelected() && creditupper.isSelected())
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,creditlowlimit,creditupplimit);
+		else if(choicenumOfday.isSelected()){
+			dfs.dfs(Class_List,0,CurrentSum,CurrentTime,Class_Num_List,Class_Time_List,numOfday,chk);
+//			System.out.println("error");
+//			return;
+		}
+	
 			
 		for(int i=0;i<Class_Num_List.size();i++)
 			E.add("시간표 " + Integer.toString(i));
-			//D[i] = "시간표 " + Integer.toString(i);
 		
 		list = FXCollections.observableArrayList(E);
 		MyTTList.setItems(list);
-		
+		Select.setDisable(false);
 	}
+	
 	
 }
 
