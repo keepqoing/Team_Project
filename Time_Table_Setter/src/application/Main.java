@@ -22,7 +22,7 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-//		DBConnection connection = new DBConnection();
-//		System.out.println("包府磊 咯何 : " + connection.isAdmin("admin", "admin"));
+    	//DBConnection connection = new DBConnection();
+		//System.out.println("包府磊 咯何 : " + connection.isAdmin("admin", "admin"));
 	}
 }

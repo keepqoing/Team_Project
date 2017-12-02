@@ -32,28 +32,31 @@
       <Button layoutX="83.0" layoutY="58.0" mnemonicParsing="false" onAction="#Print" prefWidth="200.0" text="시간표 생성" />
       <ListView fx:id="MyTTList" layoutX="83.0" layoutY="124.0" prefHeight="200.0" prefWidth="200.0" />
       <Accordion layoutX="69.0" layoutY="546.0" prefHeight="58.0" prefWidth="142.0" />
-      <VBox layoutX="91.0" layoutY="404.0" prefHeight="169.0" prefWidth="142.0">
+      <VBox layoutX="91.0" layoutY="404.0" prefHeight="198.0" prefWidth="180.0">
          <children>
-            <CheckBox mnemonicParsing="false" text="학점 이상">
+            <CheckBox fx:id="creditlower" mnemonicParsing="false" onAction="#Credit_Lower_Check" prefHeight="34.0" prefWidth="185.0" text="학점 이상">
                <padding>
                   <Insets bottom="5.0" />
                </padding>
                <graphic>
-                  <TextField prefHeight="29.0" prefWidth="32.0" text="0" />
+                  <TextField fx:id="creditlowertext" disable="true" prefHeight="29.0" prefWidth="70.0" />
                </graphic>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="학점 이하">
+            <CheckBox fx:id="creditupper" mnemonicParsing="false" onAction="#Credit_Upper_Check" text="학점 이하">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
                <graphic>
-                  <TextField prefHeight="29.0" prefWidth="32.0" text="0" />
+                  <TextField fx:id="credituppertext" disable="true" prefHeight="29.0" prefWidth="70.0" />
                </graphic>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="주 ">
+            <CheckBox fx:id="choicenumOfday" mnemonicParsing="false" prefHeight="29.0" prefWidth="158.0" onAction="#Choice_Num_Chcek" text="일 수업">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
+               <graphic>
+                  <ComboBox fx:id="choicenum" disable="true"  prefHeight="29.0" onAction = "#comboChange" prefWidth="71.0" />
+               </graphic>
             </CheckBox>
             <CheckBox mnemonicParsing="false" text="CheckBox">
                <VBox.margin>
@@ -120,5 +123,6 @@
             <Label text="금요일" GridPane.columnIndex="5" />
          </children>
       </GridPane>
+      <Button fx:id="conditionbutton" disable="true" layoutX="128.0" layoutY="619.0" mnemonicParsing="false" onAction="#Condition_Print" text="조건 검색" />
    </children>
 </AnchorPane>

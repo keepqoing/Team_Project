@@ -7,7 +7,7 @@ public class Class_Info {
 	public String className;   // 수업 이름
 	public String professor;   // 교수
 	public int credit;         // 학점
-	public String dayInfo;   // 요일,시간   ex) M1M2W3W4 -> 월12,수34
+	public String dayInfo;     // 요일,시간   ex) M1M2W3W4 -> 월12,수34
 	public ArrayList<String> time;
 	
 	
