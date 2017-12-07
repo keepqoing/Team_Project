@@ -1,12 +1,54 @@
-package application;
+package application.util;
 
 import java.util.ArrayList;
 
 public class Parser {
-	public ArrayList<String> GET_TIME(String insert) {;
+	public ArrayList<String> GET(String insert){
+		ArrayList<String> Time = new ArrayList<String>();
+		String[] divinsert = insert.split(", ");
+		for(int i=0;i<divinsert.length;i++) {
+			String temp = divinsert[i].substring(0, 1);
+			String temp2 = divinsert[i].substring(1);
+			if(temp.compareTo("월")==0) {
+				String[] tmp = temp2.split(",");
+				for(int j=0;j<tmp.length;j++) {
+					Time.add(temp+tmp[j]);
+				}
+			}
+			else if(temp.compareTo("화")==0) {
+				String[] tmp = temp2.split(",");
+				for(int j=0;j<tmp.length;j++) {
+					Time.add(temp+tmp[j]);
+				}
+			}
+			else if(temp.compareTo("수")==0) {
+				String[] tmp = temp2.split(",");
+				for(int j=0;j<tmp.length;j++) {
+					Time.add(temp+tmp[j]);
+				}
+			}
+			else if(temp.compareTo("목")==0) {
+				String[] tmp = temp2.split(",");
+				for(int j=0;j<tmp.length;j++) {
+					Time.add(temp+tmp[j]);
+				}
+			}
+			else if(temp.compareTo("금")==0) {
+				String[] tmp = temp2.split(",");
+				for(int j=0;j<tmp.length;j++) {
+					Time.add(temp+tmp[j]);
+				}
+			}
+			
+		}
+		return Time;
+	}
+	
+	public ArrayList<String> GET_TIME(String insert) {
 		ArrayList<String> Time = new ArrayList<String>();	
 		String[] temp = insert.split(",");		
-		for(int i=0;i<temp.length;i++) {
+		for(int i=0;i<temp.length;i
+				++) {
 			if(temp[i].substring(0,1).compareTo("M") == 0) {
 				int index = Integer.parseInt(temp[i].substring(1));
 				switch(index) {
