@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.Controller">
    <children>
       <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1150.0">
         <menus>
@@ -58,10 +58,13 @@
                   <ComboBox fx:id="choicenum" disable="true" onAction="#comboChange" prefHeight="29.0" prefWidth="84.0" />
                </graphic>
             </CheckBox>
-            <CheckBox mnemonicParsing="false" text="CheckBox">
+            <CheckBox fx:id="numofclassmin" mnemonicParsing="false" onAction="#Num_Of_Class_Check" text="과목 이상">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
+               <graphic>
+                  <TextField fx:id="numofclassmintext" disable="true" prefHeight="29.0" prefWidth="73.0" />
+               </graphic>
             </CheckBox>
             <CheckBox mnemonicParsing="false" text="CheckBox">
                <VBox.margin>
@@ -104,12 +107,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lab" alignment="TOP_LEFT" text="월요일" textAlignment="CENTER" GridPane.columnIndex="1">
+            <Label alignment="TOP_LEFT" text="월요일" textAlignment="CENTER" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></Label>
-            <Label fx:id="lab" text="1 교시" GridPane.rowIndex="1" />
-            <Label fx:id="lab" text="2 교시" GridPane.rowIndex="2" />
+            <Label text="1 교시" GridPane.rowIndex="1" />
+            <Label text="2 교시" GridPane.rowIndex="2" />
             <Label text="3 교시" GridPane.rowIndex="3" />
             <Label text="4 교시" GridPane.rowIndex="4" />
             <Label text="5 교시" GridPane.rowIndex="5" />
@@ -124,5 +127,6 @@
          </children>
       </GridPane>
       <Button fx:id="conditionbutton" disable="true" layoutX="128.0" layoutY="619.0" mnemonicParsing="false" onAction="#Condition_Print" text="조건 검색" />
+      <Button fx:id="test" layoutX="94.0" layoutY="689.0" mnemonicParsing="false" onAction="#testbutton" text="Button" />
    </children>
 </AnchorPane>
